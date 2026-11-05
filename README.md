@@ -45,6 +45,8 @@
 ## Scaling evidence and measurement
 
 - **Large-batch ImageNet training** - Goyal et al. match small-batch ResNet-50 accuracy at batch size 8,192 using learning-rate scaling and warmup. This is a tested training recipe, not a universal rule for scaling batch size. [Goyal et al. 2017](<https://arxiv.org/abs/1706.02677> "Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour; arXiv").
+- **Gradient noise scale** - Estimates the batch size beyond which extra examples give diminishing progress per update. Gradient variability relative to the mean predicts this transition approximately across tested vision, language and reinforcement-learning tasks. [McCandlish et al. 2018](<https://arxiv.org/abs/1812.06162v1> "An Empirical Model of Large-Batch Training; arXiv").
+    - **Critical batch size by branching** - Short continuations at different batch sizes estimate when token efficiency degrades. In OLMo 1B, batch-size warmup with learning-rate scaling reaches slightly lower training loss with 43% fewer updates than the small-batch control. [Merrill et al. 2025](<https://proceedings.neurips.cc/paper_files/paper/2025/hash/a99f732df9b668284b449da0214a3286-Abstract-Conference.html> "Critical Batch Size Revisited: A Simple Empirical Approach to Large-Batch Language Model Training; NeurIPS").
 - **MLPerf Training** - Compares time to reach specified quality targets under controlled workload and timing rules. Repeated runs address stochastic training time; throughput gains that delay convergence need not improve this metric. [Mattson et al. 2020](<https://arxiv.org/abs/1910.01500> "MLPerf Training Benchmark; MLSys").
 
 ## Software
